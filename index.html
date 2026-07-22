@@ -1,40 +1,340 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Sakthivel K - Portfolio</title>
-  <style>
-    body { font-family: Arial, sans-serif; max-width: 700px; margin: 60px auto; padding: 0 20px; color: #222; }
-    h1 { margin-bottom: 0; }
-    h3 { color: #555; font-weight: normal; margin-top: 5px; }
-    section { margin-top: 30px; }
-    a { color: #0366d6; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sakthivel K — AI & Data Science</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0F1A15;
+    --surface:#182922;
+    --surface-hi:#1F352B;
+    --line:#2A4136;
+    --text:#EAEFE9;
+    --text-dim:#8FA396;
+    --accent:#9BE564;
+    --accent-dim:#5B7A47;
+    --amber:#E8B84B;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  a{color:var(--accent); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  ::selection{background:var(--accent); color:#0F1A15;}
+
+  .wrap{max-width:920px; margin:0 auto; padding:0 28px;}
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:20px; height:1px;
+    background:var(--accent-dim);
+  }
+
+  header.hero{
+    padding:100px 0 80px;
+    position:relative;
+  }
+  .sprout{
+    position:absolute;
+    top:60px; right:28px;
+    width:120px; height:150px;
+    opacity:0.9;
+  }
+  h1.name{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:clamp(40px, 7vw, 68px);
+    line-height:1.02;
+    letter-spacing:-0.02em;
+  }
+  .role{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:clamp(16px, 2.4vw, 20px);
+    color:var(--text-dim);
+    margin-top:14px;
+    max-width:560px;
+  }
+  .meta-row{
+    display:flex; flex-wrap:wrap; gap:22px;
+    margin-top:32px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--text-dim);
+  }
+  .meta-row span{display:flex; align-items:center; gap:7px;}
+  .dot{width:6px; height:6px; border-radius:50%; background:var(--accent); display:inline-block;}
+
+  .cta-row{margin-top:40px; display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    padding:12px 20px;
+    border-radius:6px;
+    border:1px solid var(--line);
+    color:var(--text);
+    transition:all 0.2s ease;
+  }
+  .btn:hover{border-color:var(--accent); background:var(--surface-hi); text-decoration:none;}
+  .btn.primary{background:var(--accent); color:#0F1A15; border-color:var(--accent); font-weight:600;}
+  .btn.primary:hover{background:#8AD654;}
+
+  section{padding:64px 0; border-top:1px solid var(--line);}
+  h2.section-title{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:clamp(24px, 3.4vw, 32px);
+    margin-bottom:36px;
+  }
+
+  .about-text{max-width:640px; color:var(--text-dim); font-size:15.5px;}
+  .about-text strong{color:var(--text); font-weight:600;}
+
+  .skill-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:22px;}
+  .skill-card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:20px;
+  }
+  .skill-card h3{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--accent); margin-bottom:12px;
+  }
+  .tag-list{display:flex; flex-wrap:wrap; gap:8px;}
+  .tag{
+    font-size:13px;
+    padding:5px 10px;
+    background:var(--surface-hi);
+    border-radius:5px;
+    color:var(--text-dim);
+  }
+
+  .project{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:28px;
+    margin-bottom:20px;
+    transition:border-color 0.2s ease, transform 0.2s ease;
+  }
+  .project:hover{border-color:var(--accent-dim); transform:translateY(-2px);}
+  .project-head{display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px;}
+  .project h3{font-family:'Space Grotesk', sans-serif; font-size:20px;}
+  .project .year{font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--text-dim);}
+  .project p{color:var(--text-dim); margin-top:10px; font-size:14.5px; max-width:640px;}
+  .metric{
+    display:inline-block;
+    margin-top:14px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--amber);
+    border:1px solid rgba(232,184,75,0.35);
+    padding:4px 10px;
+    border-radius:5px;
+  }
+
+  .exp-item{display:flex; gap:24px; padding:18px 0; border-bottom:1px solid var(--line);}
+  .exp-item:last-child{border-bottom:none;}
+  .exp-time{font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--text-dim); min-width:130px;}
+  .exp-role{font-family:'Space Grotesk', sans-serif; font-size:16px; font-weight:600;}
+  .exp-org{color:var(--text-dim); font-size:14px; margin-top:2px;}
+
+  .ach-list{list-style:none;}
+  .ach-list li{
+    padding:12px 0 12px 24px;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    font-size:14.5px;
+    color:var(--text-dim);
+  }
+  .ach-list li::before{
+    content:"▸";
+    position:absolute; left:0; color:var(--accent);
+  }
+  .ach-list li strong{color:var(--text);}
+
+  footer{padding:60px 0 80px; border-top:1px solid var(--line);}
+  .footer-title{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:clamp(26px,4vw,36px);
+    margin-bottom:20px;
+  }
+  .footer-links{display:flex; gap:16px; flex-wrap:wrap;}
+
+  @media (max-width:640px){
+    .sprout{display:none;}
+    header.hero{padding:70px 0 50px;}
+  }
+</style>
 </head>
 <body>
-  <h1>Sakthivel K</h1>
-  <h3>AI & Data Science Undergraduate | AI Developer | ML Enthusiast</h3>
-  <p>📍 Cuddalore, Tamil Nadu, India &nbsp;|&nbsp; 📧 sakthivel18092005@gmail.com</p>
 
-  <section>
-    <h2>About</h2>
-    <p>Motivated AI & Data Science undergraduate with hands-on experience in Machine Learning, Data Analytics, and AI Automation. Skilled in building predictive models and AI-driven applications for real-world use in agriculture and business intelligence.</p>
+<div class="wrap">
+
+  <header class="hero">
+    <svg class="sprout" viewBox="0 0 120 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="60" y1="150" x2="60" y2="70" stroke="#5B7A47" stroke-width="2"/>
+      <path id="leaf1" d="M60 100 C 30 95, 15 70, 25 45 C 55 50, 65 80, 60 100 Z" fill="#9BE564" opacity="0.85"/>
+      <path id="leaf2" d="M60 85 C 90 78, 105 55, 95 32 C 65 38, 55 65, 60 85 Z" fill="#7CC94E" opacity="0.85"/>
+      <circle cx="60" cy="30" r="7" fill="#E8B84B"/>
+    </svg>
+
+    <p class="eyebrow">AI &amp; Data Science · Portfolio</p>
+    <h1 class="name">Sakthivel K</h1>
+    <p class="role">Building machine learning systems that turn raw data into decisions — from crop recommendations to lead intelligence.</p>
+
+    <div class="meta-row">
+      <span><span class="dot"></span>Cuddalore, Tamil Nadu, India</span>
+      <span><span class="dot"></span>B.Tech AI &amp; DS · 2023–2027</span>
+      <span><span class="dot"></span>CGPA 8.1</span>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn primary" href="mailto:sakthivel18092005@gmail.com">Email me</a>
+      <a class="btn" href="https://github.com/Sakthivel1809">GitHub ↗</a>
+    </div>
+  </header>
+
+  <section id="about">
+    <p class="eyebrow">About</p>
+    <p class="about-text">
+      Motivated AI &amp; Data Science undergraduate with hands-on experience in <strong>machine learning, data analytics, and AI automation</strong> gained through internships, hackathons, and independent projects. I build predictive models and AI-driven applications for real-world use — particularly in agriculture and business intelligence. Currently seeking an internship to keep growing in emerging AI technologies.
+    </p>
   </section>
 
-  <section>
-    <h2>Projects</h2>
-    <ul>
-      <li><b>UOBA</b> — AI-powered backend automation for beneficiary management</li>
-      <li><b>Automated B2B Lead Intelligence Engine</b> — 82% validation accuracy lead verification system</li>
-      <li><b>AI-Powered Agriculture Recommendation System</b> — crop & disease prediction with ML</li>
+  <section id="skills">
+    <p class="eyebrow">Toolkit</p>
+    <div class="skill-grid">
+      <div class="skill-card">
+        <h3>Languages</h3>
+        <div class="tag-list">
+          <span class="tag">Python</span><span class="tag">Java</span><span class="tag">SQL</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>AI &amp; ML</h3>
+        <div class="tag-list">
+          <span class="tag">Machine Learning</span><span class="tag">Deep Learning</span><span class="tag">NLP</span><span class="tag">Predictive Analytics</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Data Science</h3>
+        <div class="tag-list">
+          <span class="tag">Data Analysis</span><span class="tag">Visualization</span><span class="tag">Feature Engineering</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Libraries &amp; Tools</h3>
+        <div class="tag-list">
+          <span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Scikit-learn</span><span class="tag">TensorFlow</span><span class="tag">Git</span><span class="tag">MySQL</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <p class="eyebrow">Projects</p>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>UOBA — Unified Open-source Beneficiary Assistant</h3>
+        <span class="year">2025</span>
+      </div>
+      <p>AI-powered backend automation for beneficiary management, with intelligent real-time response systems built for operational efficiency and reliability.</p>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>Automated B2B Lead Intelligence Engine</h3>
+        <span class="year">2024</span>
+      </div>
+      <p>AI-based lead verification and enrichment system that automates company data collection and validation workflows, cutting manual effort significantly.</p>
+      <span class="metric">82% validation accuracy</span>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>AI-Powered Agriculture Recommendation System</h3>
+        <span class="year">2024</span>
+      </div>
+      <p>Crop and disease prediction system using ML, generating fertilizer and pesticide recommendations based on real crop conditions.</p>
+    </div>
+  </section>
+
+  <section id="experience">
+    <p class="eyebrow">Experience</p>
+    <div class="exp-item">
+      <div class="exp-time">Aug – Sep 2025</div>
+      <div>
+        <div class="exp-role">AI Intern</div>
+        <div class="exp-org">Rashtriya Technologies Pvt. Ltd. — built and tested AI automation solutions, trained and evaluated ML models.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-time">Jul – Aug 2025</div>
+      <div>
+        <div class="exp-role">Data Science Research Intern</div>
+        <div class="exp-org">Built predictive analytics models, performed data cleaning and feature engineering, developed interactive dashboards.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="achievements">
+    <p class="eyebrow">Achievements &amp; Certifications</p>
+    <ul class="ach-list">
+      <li><strong>3rd Place</strong> — ONEST Hackathon, AIC RAISE, Coimbatore (2025)</li>
+      <li>Participant — GEN-AI Hackathon, SmartBridge &amp; IBM SkillsBuild (2025)</li>
+      <li>Presented research paper <strong>"No-Code AI Platform"</strong> at NCEAMLCP (2025)</li>
+      <li>IBM SkillsBuild — Generative AI Fundamentals</li>
+      <li>Python for Data Science Certification</li>
     </ul>
   </section>
 
-  <section>
-    <h2>Connect</h2>
-    <p>
-      GitHub: <a href="https://github.com/Sakthivel1809">github.com/Sakthivel1809</a><br>
-      Email: sakthivel18092005@gmail.com
-    </p>
-  </section>
+  <footer>
+    <p class="eyebrow">Get in touch</p>
+    <h2 class="footer-title">Let's build something with data.</h2>
+    <div class="footer-links">
+      <a class="btn primary" href="mailto:sakthivel18092005@gmail.com">sakthivel18092005@gmail.com</a>
+      <a class="btn" href="https://github.com/Sakthivel1809">github.com/Sakthivel1809</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  const leaf1 = document.getElementById('leaf1');
+  const leaf2 = document.getElementById('leaf2');
+  let t = 0;
+  function animate(){
+    t += 0.015;
+    if(leaf1) leaf1.style.transform = `rotate(${Math.sin(t)*2}deg)`;
+    if(leaf2) leaf2.style.transform = `rotate(${Math.cos(t)*2}deg)`;
+    requestAnimationFrame(animate);
+  }
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    animate();
+  }
+</script>
+
 </body>
 </html>
